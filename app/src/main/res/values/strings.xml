@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyPosts</string>
+    <string name="click_to_view">View Post</string>
+</resources>
