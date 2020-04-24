@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MyPosts</string>
     <string name="click_to_view">View Post</string>
+    <string name="click_and_title">Click To View My Post</string>
+    <string name="button_view">View</string>
+    <string name="no_post">No post found</string>
 </resources>
