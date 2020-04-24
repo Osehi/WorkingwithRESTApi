@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.polish.myposts.data.network.NetworkRepository
 import com.polish.myposts.model.POST
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class POSTViewModel: ViewModel() {
 
@@ -17,6 +14,9 @@ class POSTViewModel: ViewModel() {
     private val scope = CoroutineScope(job + Dispatchers.Main)
 
     private val _myListOfPost = MutableLiveData<List<POST>>()
+    val myListOfPost:LiveData<List<POST>>
+        get() = _myListOfPost
+
 
     fun viewMyPostHere(): LiveData<List<POST>> {
 
@@ -26,6 +26,12 @@ class POSTViewModel: ViewModel() {
 
         }
         return _myListOfPost
+    }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        scope.cancel()
     }
 
 }

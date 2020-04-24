@@ -10,7 +10,7 @@ import retrofit2.http.GET
 
 interface PostAPI {
 
-    @GET("posts")
+    @GET(URLEndpoints.POST_ENDPOINT)
    suspend fun viewPosts():List<POST>
 
 
