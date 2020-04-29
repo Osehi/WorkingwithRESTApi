@@ -1,83 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layer_heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        >
+    <data>
+        <variable
+            name="POST"
+            type="com.polish.myposts.model.POST" />
+    </data>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="cursive"
-            android:gravity="center"
-            android:text="@string/click_and_title"
-            android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="monospace"
-            android:text="@string/button_view"
-            android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layer_views"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/layer_heading"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
+        tools:context=".MainActivity">
 
-        >
-        <FrameLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layer_heading"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/myRecyclerViewId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no_post"
-                android:layout_gravity="center"
-                />
+                android:layout_weight="1"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="@string/click_and_title"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/view_buttonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:text="@string/button_view"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
 
 
-        </FrameLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layer_views"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/layer_heading"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/myRecyclerViewId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    tools:listitem="@layout/list_item_post"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/progressBarId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    tools:visibility="visible"
+                    />
+
+                <TextView
+                    android:id="@+id/networkErrorMsgId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_post"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    tools:visibility="visible"
+                    />
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            </FrameLayout>
 
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
