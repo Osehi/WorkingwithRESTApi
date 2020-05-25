@@ -28,8 +28,9 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{POST.title}"
-                tools:text="@string/display_title" />
+                tools:text="@string/display_title"
+                app:titlePOST="@{POST}"
+                />
 
             <TextView
                 android:id="@+id/post_contedId"
@@ -38,8 +39,9 @@
                 android:textSize="@dimen/text_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{POST.body}"
-                tools:text="@string/display_body" />
+                tools:text="@string/display_body"
+                app:contentPOST="@{POST}"
+                />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
