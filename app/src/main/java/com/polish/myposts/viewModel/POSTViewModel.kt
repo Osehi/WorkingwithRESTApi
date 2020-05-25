@@ -49,5 +49,10 @@ class POSTViewModel: ViewModel() {
 
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
+
 
 }
