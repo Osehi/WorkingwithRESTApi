@@ -7,11 +7,16 @@
         <variable
             name="POST"
             type="com.polish.myposts.model.POST" />
+        <variable
+            name="clickListener"
+            type="com.polish.myposts.adapter.POSTAdapter.OnClickListener" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(POST)}"
+        >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

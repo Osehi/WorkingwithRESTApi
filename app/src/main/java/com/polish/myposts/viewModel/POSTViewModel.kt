@@ -25,6 +25,10 @@ class POSTViewModel: ViewModel() {
     val myListOfPost:LiveData<Result<List<POST>>>
     get() = _myListOfPost
 
+    private val _navigateToPostDetail = MutableLiveData<POST>()
+    val navigateToPostDetail
+    get() = _navigateToPostDetail
+
 
 //    fun viewMyPostHere(): LiveData<List<POST>> {
 //
@@ -35,6 +39,18 @@ class POSTViewModel: ViewModel() {
 //        }
 //        return _myListOfPost
 //    }
+
+
+    // click handler
+    // this will trigger the navigation
+    fun onPostClicked(post: POST){
+        _navigateToPostDetail.value = post
+    }
+
+    // define the method after the app has finished navigating
+    fun onPostDetailNavigated(){
+        _navigateToPostDetail.value = null
+    }
 
 
     fun viewMyPostHere(): LiveData<Result<List<POST>>>{

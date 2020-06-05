@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.polish.myposts.databinding.ListItemPostBinding
 import com.polish.myposts.model.POST
 
-class POSTAdapter(): ListAdapter<POST, POSTAdapter.POSTViewHolder >(DiffCallback){
+class POSTAdapter(val clickListener:OnClickListener): ListAdapter<POST, POSTAdapter.POSTViewHolder >(DiffCallback){
 
     class POSTViewHolder(var binding:ListItemPostBinding):RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(post:POST){
+        fun bind(post:POST, clickListener: OnClickListener){
 
             binding.post = post
+
+            binding.clickListener = clickListener
 
             binding.executePendingBindings()
 
@@ -39,8 +41,15 @@ class POSTAdapter(): ListAdapter<POST, POSTAdapter.POSTViewHolder >(DiffCallback
     override fun onBindViewHolder(holder: POSTViewHolder, position: Int) {
         val post = getItem(position)
 
-        holder.bind(post)
+        holder.bind(post, clickListener)
 
     }
+
+    class OnClickListener(val clickListener:(post:POST) -> Unit){
+
+        fun onClick(post: POST) = clickListener(post)
+
+    }
+
 
 }

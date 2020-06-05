@@ -49,7 +49,14 @@ class MainActivity : AppCompatActivity() {
         val recyclerView:RecyclerView = findViewById(R.id.myRecyclerViewId)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-         adapter = POSTAdapter()
+         adapter = POSTAdapter(
+             POSTAdapter.OnClickListener { postItem ->
+                 Toast.makeText(this, "${postItem}", Toast.LENGTH_LONG).show()
+
+                 viewModel.onPostClicked(postItem)
+
+             }
+         )
         recyclerView.adapter = adapter
 
 //        viewModel.myListOfPost.observe(this, Observer {
@@ -76,6 +83,25 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+        })
+
+        // this code is the observe the click, that is observe the navigateToDetail
+        viewModel.navigateToPostDetail.observe(this, Observer { postItem ->
+            postItem?.let {
+                // normally to use a navigation controller but am not using a navigation controller
+                // i will use intent
+
+                /*
+                if am to use navigation controller it will be like this
+
+                this.findNavController().naviate(
+                MainActivityDirectons.actionMainActivityToDetailActivity(postItem)
+                )
+                viewModel.onPostDetailNAvigated()
+
+                 */
+
+            }
         })
 
 
