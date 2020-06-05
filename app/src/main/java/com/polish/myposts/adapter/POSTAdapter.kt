@@ -52,4 +52,22 @@ class POSTAdapter(val clickListener:OnClickListener): ListAdapter<POST, POSTAdap
     }
 
 
+    sealed class DataItem {
+
+        abstract val id:Int
+
+        data class PostItem(val post:POST):DataItem() {
+            override val id: Int
+                get() = post.id
+        }
+
+        object Header:DataItem() {
+            override val id: Int
+                get() = Int.MIN_VALUE
+        }
+
+    }
+
+
+
 }
