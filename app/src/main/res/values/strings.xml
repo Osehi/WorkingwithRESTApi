@@ -6,4 +6,5 @@
     <string name="no_post">No post found</string>
     <string name="display_title">Title</string>
     <string name="display_body">Content</string>
+    <string name="list_news">List of News</string>
 </resources>

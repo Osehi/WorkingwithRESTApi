@@ -72,7 +72,10 @@ class MainActivity : AppCompatActivity() {
 
                 is Result.Success -> {
                     progressBarId.visibility = View.GONE
-                    it.data?.let {myPosts -> renderList(myPosts) }
+                    it.data?.let {
+                        adapter.addHeaderAndSubmitList(it)
+                        Log.i(TAG, "What is inside observer result:$it")
+                    }
                     myRecyclerViewId.visibility = View.VISIBLE
                 }
                 is Result.Error -> {
@@ -107,8 +110,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun renderList(myPosts:List<POST>){
-        adapter.submitList(myPosts)
-    }
+//    private fun renderList(itemPost:List<POST>){
+//        adapter.addHeaderAndSubmitList(itemPost)
+//    }
 
 }
