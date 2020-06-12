@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var button:Button
     lateinit var viewModel: POSTViewModel
     lateinit var adapter:POSTAdapter
+    // activity
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +35,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(POSTViewModel::class.java)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-
+//        val binding = ActivityMainBinding.inflate(layoutInflater)
+            binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 //        binding.viewButtonId.setOnClickListener {
 //
 //            viewModel.viewMyPostHere()
 //
 //        }
+        // Allows Data Binding to observe LiveData with the Lifecycle of this activity
+        binding.lifecycleOwner = this
+
+        // Giving the binding access to the POSTViewModel
+        binding.postViewModel = viewModel
+
         button = findViewById(R.id.view_buttonId)
         button.setOnClickListener {
             viewModel.viewMyPostHere()
@@ -71,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             when(it){
 
                 is Result.Success -> {
-                    progressBarId.visibility = View.GONE
+//                    progressBarId.visibility = View.GONE
                     it.data?.let {
                         adapter.addHeaderAndSubmitList(it)
                         Log.i(TAG, "What is inside observer result:$it")
@@ -79,8 +88,9 @@ class MainActivity : AppCompatActivity() {
                     myRecyclerViewId.visibility = View.VISIBLE
                 }
                 is Result.Error -> {
-                    progressBarId.visibility = View.GONE
-                    networkErrorMsgId.visibility = View.VISIBLE
+//                    progressBarId.visibility = View.GONE
+//                    networkErrorMsgId.visibility = View.VISIBLE
+                    myRecyclerViewId.visibility = View.GONE
                     Toast.makeText(this, "${it.exception.message}",Toast.LENGTH_LONG).show()
                 }
 

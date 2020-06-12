@@ -7,6 +7,9 @@
         <variable
             name="POST"
             type="com.polish.myposts.model.POST" />
+        <variable
+            name="POSTViewModel"
+            type="com.polish.myposts.viewModel.POSTViewModel" />
     </data>
 
     <RelativeLayout
@@ -75,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     tools:visibility="visible"
                     />
 
@@ -87,6 +90,15 @@
                     android:layout_gravity="center"
                     android:visibility="invisible"
                     tools:visibility="visible"
+                    />
+                
+                <ImageView
+                    android:id="@+id/status_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/cd_status_image"
+                    android:layout_gravity="center"
+                    app:postApiStatus="@{POSTViewModel.status}"
                     />
 
 

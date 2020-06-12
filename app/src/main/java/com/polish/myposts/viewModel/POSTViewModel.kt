@@ -63,7 +63,17 @@ class POSTViewModel: ViewModel() {
 
         scope.launch {
 
-            _myListOfPost.value = repository.getMyPost()
+            try {
+                _status.value = POSTApiStatus.LOADING
+                _myListOfPost.value = repository.getMyPost()
+
+                _status.value = POSTApiStatus.DONE
+
+            } catch (e:Exception){
+                _status.value = POSTApiStatus.ERROR
+            }
+
+
 
         }
 
