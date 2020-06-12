@@ -11,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+enum class POSTApiStatus { LOADING, ERROR, DONE }
+
 class POSTViewModel: ViewModel() {
 
     private val repository = NetworkRepository()
@@ -28,6 +30,10 @@ class POSTViewModel: ViewModel() {
     private val _navigateToPostDetail = MutableLiveData<POST>()
     val navigateToPostDetail
     get() = _navigateToPostDetail
+
+    private val _status = MutableLiveData<POSTApiStatus>()
+    val status:LiveData<POSTApiStatus>
+    get() = _status
 
 
 //    fun viewMyPostHere(): LiveData<List<POST>> {
